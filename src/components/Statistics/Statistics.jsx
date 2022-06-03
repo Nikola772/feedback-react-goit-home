@@ -1,20 +1,23 @@
-export const Statistics = ({good, neutral, bad, countTotalFeedback, countPositiveFeedbackPercentage}) => {
-    countPositiveFeedbackPercentage = () => {
-       return  Math.ceil((good  / countTotalFeedback()) * 100 )
-     }
+import PropTypes from 'prop-types';
 
-     countTotalFeedback = () => {
- 
-       return good + neutral +  bad;
-       
-     }
-   return (
-       <div>           
-          <span>Good: {good}</span>
-          <span>Neutral: {neutral}</span>
-          <span>Bad: {bad}</span>
-          <span>Total: { countTotalFeedback() }</span>
-          <span>Posivive feedback: {countPositiveFeedbackPercentage()}%</span>
-       </div>
-   )
-}
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+	return (
+		<>
+			<p>Good:{good}</p>
+			<p>Neutral:{neutral}</p>
+			<p>Bad:{bad}</p>
+			<p>Total:{total}</p>
+			<p>Positive feedback:{positivePercentage} %</p>
+		</>
+	);
+};
+
+Statistics.propTypes = {
+	good: PropTypes.number.isRequired,
+	neutral: PropTypes.number.isRequired,
+	bad: PropTypes.number.isRequired,
+	total: PropTypes.number.isRequired,
+	positivePercentage: PropTypes.number.isRequired
+};
+
+export default Statistics;
